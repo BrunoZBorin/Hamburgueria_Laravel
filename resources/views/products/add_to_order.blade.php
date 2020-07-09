@@ -3,6 +3,15 @@
 Produtos
 @endsection
 @section('content')
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <ul class="list-group">
     <h4>Cliente: {{$client->name}}</h4>
     @foreach($products as $product)

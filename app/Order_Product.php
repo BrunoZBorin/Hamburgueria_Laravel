@@ -8,7 +8,7 @@ class Order_Product extends Model
 {
     public $timestamps = false;
     
-    protected $fillable = ['product_id', 'order_id','qtd'];
+    protected $fillable = ['product_id', 'order_id','qtd', 'status'];
     public function orders()
     {
         return $this->belongsTo(Order::class);

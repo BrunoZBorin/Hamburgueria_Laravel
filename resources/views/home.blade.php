@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <a href="/admin" class="btn btn-dark">Administrativo</a>
                 </div>
             </div>
         </div>

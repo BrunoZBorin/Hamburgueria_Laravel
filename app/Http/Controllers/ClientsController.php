@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\ClientRequest;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Client;
+
+use App\Order;
 
 class ClientsController extends Controller
 {
@@ -33,14 +37,41 @@ class ClientsController extends Controller
         return redirect ('/');
         
     }
+    
+    function edit(int $id)
+    {
+        $client = Client::find($id);
+        return view('clients.update', compact('client'));
+    }
+
+    function update(Request $request)
+    {
+        $client = Client::find($request->id);
+        $client->name = $request->name;
+        $client->street = $request->street;
+        $client->number = $request->number;
+        $client->number = $request->number;
+        $client->save();
+        return redirect ('/clients');
+    }
+
+    function destroy(Request $request)
+    {
+        Client::destroy($request->id);
+        return redirect ('/clients');
+    }
+
     public function validatePhone(ClientRequest $request)
     {
         $phone = $request->phone;
-        $clients = Client::all();        
+        $clients = Client::all();
         foreach($clients as $client){
-            if($phone == $client->phone){
-
-                return view('orders.create', compact('client'));
+            if($phone == $client->phone)
+            {
+                $orders = DB::table('orders')
+                ->where('client_id','=', $client->id)
+                ->get();        
+                return view('orders.start', compact('client','orders'));
             }
         }
     

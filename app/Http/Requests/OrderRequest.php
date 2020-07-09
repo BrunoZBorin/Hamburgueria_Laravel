@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClientRequest extends FormRequest
+class OrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,13 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone'=>'required'
+            'qtd' => 'required|integer|min:0',
         ];
     }
-
     public function messages()
     {
         return[
-            'require' => 'É necessário preencher o campo de telefone'
+            'min' => 'É necessário que o numero seja positivo e maior que zero'
         ];
     }
 }
