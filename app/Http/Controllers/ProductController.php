@@ -34,4 +34,27 @@ class ProductController extends Controller
         
     }
 
+    function edit(int $id)
+    {
+        $product = Product::find($id);
+        return view('products.update', compact('product'));
+    }
+
+    function update(Request $request)
+    {
+        $product = Product::find($request->id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->value = $request->value;
+        $product->save();
+        return redirect ('/products');
+    }
+
+    function destroy(Request $request)
+    {
+        Product::destroy($request->id);
+        return redirect ('/products');
+    }
+
+
 }

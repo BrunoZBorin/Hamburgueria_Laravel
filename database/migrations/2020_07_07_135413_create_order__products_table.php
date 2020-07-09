@@ -16,6 +16,7 @@ class CreateOrderProductsTable extends Migration
         Schema::create('order__products', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('qtd');
+            $table->enum('status', ['Ativo', 'Cancelado']);
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')
             ->references('id')

@@ -4,7 +4,7 @@ Bem vindo a Hamburgueria Valbernielson's
 @endsection
 @section('content')
 @if(!empty($message))
-        <div class="alert alert-danger">
+        <div class="alert alert-success">
             {{$message}}
         </div>
 @endif
@@ -14,26 +14,26 @@ Bem vindo a Hamburgueria Valbernielson's
                     @if (Route::has('login'))
                         <div class="top-right links">
                             @auth
-                                <a href="{{ url('/home') }}" class="btn btn-dark">Home</a>
-                                <a href="admin" class="btn btn-dark">Administrativo</button>
+                                <a href="{{ url('/home') }}" class="btn btn-dark">Logout</a>
+                                <a href="admin" class="btn btn-dark">Administrativo</a>
                             @else
-                                <a href="{{ route('login') }}">Login</a>
+                                <a class="btn btn-dark" href="{{ route('login') }}">Login</a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}">Register</a>
+                                    <a class="btn btn-dark" href="{{ route('register') }}">Register</a>
                                 @endif
                             @endauth
                         </div>
                     @endif
-                <div>
-                    <form action="/clients/validatePhone" method="post">
+                <div class="row mt-5">
+                    <form action="/clients/validatePhone" class="mr-4 mb-4" method="post">
                         @csrf
-                        <label>Já sou cliente</label>
+                        <label class="ml-4">Já sou cliente</label>
                         <input type="text" name="phone" placeholder="Digite aqui seu nº de telefone">
                         <button class="btn btn-primary">Entrar</button>
                     </form>
                     <label class="mt-2">Ainda não sou cliente</label>
-                    <a href="/clients/create" class="btn btn-danger">Cadastrar-se</a>
+                    <a href="/clients/create" class="btn btn-danger ml-4 mb-4">Cadastrar-se</a>
 
                 </div>
             </div>
